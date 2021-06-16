@@ -97,7 +97,6 @@ const imagesMarkup = createGalleryImagesMarkup(galleryItems);
 
 galleryEl.insertAdjacentHTML('beforeend', imagesMarkup);
 
-
 // console.log(createGalleryImagesMarkup(galleryItems))
 
 function createGalleryImagesMarkup(galleryItems) {
@@ -105,8 +104,8 @@ function createGalleryImagesMarkup(galleryItems) {
     return `
     <li class = "gallery__item">
     <a class = "gallery__link" href = "${original}">
-    <img class = "gallery__image" src = "${preview}" alt = "${description}">
-    </img>
+    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}">
+    </>
     </a>
     </li>
      `;
@@ -119,36 +118,49 @@ function createGalleryImagesMarkup(galleryItems) {
 
 // Модалка 
 
-// const refs = {
-//   modalEl: document.querySelector('.js-lightbox'),
-//   overlayModalEl: document.querySelector('.lightbox__overlay'),
-//   btnCloseModalEl: document.querySelector('[data-action="close-lightbox"]'),
-  
-// }
-
+const refs = {
+  modalEl: document.querySelector('.js-lightbox'),
+  overlayModalEl: document.querySelector('.lightbox__overlay'),
+  btnCloseModalEl: document.querySelector('[data-action="close-lightbox"]'),
+  imageEl: document.querySelector('.lightbox__image')
+}
 
 // refs.modalEl.addEventListener('click', onOpenModal);
-// refs.btnCloseModalEl.addEventListener('click', onCloseModal)
-// refs.overlayModalEl.addEventListener('click', onOverlayClick)
+refs.btnCloseModalEl.addEventListener('click', onCloseModal)
+refs.overlayModalEl.addEventListener('click', onOverlayClick)
 
-// function onOpenModal() {
-// window.addEventListener('keydown', onEskPress)
-//   refs.modalEl.classList.add('is-open')
-// }
 
-// function onCloseModal() {
-//   window.removeEventListener('keydown', onEskPress)
-//   refs.modalEl.classList.remove('is-open')
-// }
+galleryEl.addEventListener('click', onClickGalleryImage)
 
-// function onOverlayClick(event) {
-//   if(event.currentTarget === event.target){
-//     onCloseModal() 
-//   }
-// }
+function onClickGalleryImage (e){
+e.preventDefault();
 
-// function onEskPress() {
-// if(event.code === 'Escape'){
-//   onCloseModal() 
-//   }
-// }
+if(!e.target.classList.contains('gallery__image')){
+  return
+}
+console.log(e.target.dataset.source)
+
+refs.modalEl.classList.add('is-open')
+window.addEventListener('keydown', onEskPress)
+
+refs.imageEl.src = e.target.dataset.source
+console.log(refs.imageEl)
+}
+
+function onCloseModal() {
+  window.removeEventListener('keydown', onEskPress)
+  refs.modalEl.classList.remove('is-open')
+}
+
+function onOverlayClick(e) {
+  if(e.currentTarget === e.target){
+    onCloseModal() 
+  }
+}
+
+function onEskPress(e) {
+if(e.code === 'Escape'){
+  onCloseModal() 
+  }
+}
+
