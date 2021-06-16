@@ -104,7 +104,7 @@ function createGalleryImagesMarkup(galleryItems) {
     return `
     <li class = "gallery__item">
     <a class = "gallery__link" href = "${original}">
-    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}">
+    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}" data-index="${index}">
     </>
     </a>
     </li>
@@ -125,7 +125,6 @@ const refs = {
   imageEl: document.querySelector('.lightbox__image')
 }
 
-// refs.modalEl.addEventListener('click', onOpenModal);
 refs.btnCloseModalEl.addEventListener('click', onCloseModal)
 refs.overlayModalEl.addEventListener('click', onOverlayClick)
 
@@ -138,18 +137,19 @@ e.preventDefault();
 if(!e.target.classList.contains('gallery__image')){
   return
 }
-console.log(e.target.dataset.source)
+// console.log(e.target.dataset.source)
 
 refs.modalEl.classList.add('is-open')
 window.addEventListener('keydown', onEskPress)
 
 refs.imageEl.src = e.target.dataset.source
-console.log(refs.imageEl)
+// console.log(refs.imageEl)
 }
 
 function onCloseModal() {
-  window.removeEventListener('keydown', onEskPress)
-  refs.modalEl.classList.remove('is-open')
+  window.removeEventListener('keydown', onEskPress);
+  refs.modalEl.classList.remove('is-open');
+  // refs.imageEl.src = '';
 }
 
 function onOverlayClick(e) {
@@ -163,4 +163,3 @@ if(e.code === 'Escape'){
   onCloseModal() 
   }
 }
-
