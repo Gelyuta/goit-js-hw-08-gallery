@@ -87,3 +87,68 @@ const galleryItems = [
 // Закрытие модального окна по нажатию клавиши ESC.
 // Пролистывание изображений галереи в открытом 
 // модальном окне клавишами "влево" и "вправо".
+
+
+
+// Галерея 
+const galleryEl = document.querySelector('.js-gallery');
+
+const imagesMarkup = createGalleryImagesMarkup(galleryItems);
+
+galleryEl.insertAdjacentHTML('beforeend', imagesMarkup);
+
+
+// console.log(createGalleryImagesMarkup(galleryItems))
+
+function createGalleryImagesMarkup(galleryItems) {
+ return galleryItems.map(({ preview, original, description }) => {
+    return `
+    <li class = "gallery__item">
+    <a class = "gallery__link" href = "${original}">
+    <img class = "gallery__image" src = "${preview}" alt = "${description}">
+    </img>
+    </a>
+    </li>
+     `;
+     
+}).join(' ');
+}
+
+
+
+
+// Модалка 
+
+// const refs = {
+//   modalEl: document.querySelector('.js-lightbox'),
+//   overlayModalEl: document.querySelector('.lightbox__overlay'),
+//   btnCloseModalEl: document.querySelector('[data-action="close-lightbox"]'),
+  
+// }
+
+
+// refs.modalEl.addEventListener('click', onOpenModal);
+// refs.btnCloseModalEl.addEventListener('click', onCloseModal)
+// refs.overlayModalEl.addEventListener('click', onOverlayClick)
+
+// function onOpenModal() {
+// window.addEventListener('keydown', onEskPress)
+//   refs.modalEl.classList.add('is-open')
+// }
+
+// function onCloseModal() {
+//   window.removeEventListener('keydown', onEskPress)
+//   refs.modalEl.classList.remove('is-open')
+// }
+
+// function onOverlayClick(event) {
+//   if(event.currentTarget === event.target){
+//     onCloseModal() 
+//   }
+// }
+
+// function onEskPress() {
+// if(event.code === 'Escape'){
+//   onCloseModal() 
+//   }
+// }
