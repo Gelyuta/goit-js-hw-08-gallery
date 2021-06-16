@@ -149,7 +149,7 @@ refs.imageEl.src = e.target.dataset.source
 function onCloseModal() {
   window.removeEventListener('keydown', onEskPress);
   refs.modalEl.classList.remove('is-open');
-  // refs.imageEl.src = '';
+  refs.imageEl.src = '';
 }
 
 function onOverlayClick(e) {
