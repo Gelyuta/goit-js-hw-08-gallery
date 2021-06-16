@@ -104,7 +104,7 @@ function createGalleryImagesMarkup(galleryItems) {
     return `
     <li class = "gallery__item">
     <a class = "gallery__link" href = "${original}">
-    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}" data-index="${index}">
+    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}">
     </>
     </a>
     </li>
