@@ -113,7 +113,6 @@ function createGalleryImagesMarkup(galleryItems) {
 }).join(' ');
 }
 
-
 // Модалка 
 
 const refs = {
