@@ -100,11 +100,11 @@ galleryEl.insertAdjacentHTML('beforeend', imagesMarkup);
 // console.log(createGalleryImagesMarkup(galleryItems))
 
 function createGalleryImagesMarkup(galleryItems) {
- return galleryItems.map(({ preview, original, description }) => {
+ return galleryItems.map(({ preview, original, description }, index) => {
     return `
     <li class = "gallery__item">
     <a class = "gallery__link" href = "${original}">
-    <img class = "gallery__image" src = "${preview}" alt = "${description}" data-source = "${original}">
+    <img class = "gallery__image" src = "${preview}" alt = "${description}"  data-source = "${original}"  data-index = "${index}">
     </>
     </a>
     </li>
@@ -122,8 +122,7 @@ const refs = {
   imageEl: document.querySelector('.lightbox__image')
 }
 
-refs.btnCloseModalEl.addEventListener('click', onCloseModal)
-refs.overlayModalEl.addEventListener('click', onOverlayClick)
+
 
 
 galleryEl.addEventListener('click', onClickGalleryImage)
@@ -140,6 +139,8 @@ refs.modalEl.classList.add('is-open')
 window.addEventListener('keydown', onEskPress)
 
 refs.imageEl.src = e.target.dataset.source
+refs.btnCloseModalEl.addEventListener('click', onCloseModal)
+refs.overlayModalEl.addEventListener('click', onOverlayClick)
 // console.log(refs.imageEl)
 }
 
@@ -160,3 +161,29 @@ if(e.code === 'Escape'){
   onCloseModal() 
   }
 }
+
+// Пролистывание галереи
+
+// function onArrowRight() {
+//   if (currentIndex + 1 > galleryItems.length - 1) {
+//     currentIndex = 0;
+//   } else {
+//     currentIndex += 1;
+//   }
+//   lightBoxImgContent(
+//     galleryItems[currentIndex].original,
+//     galleryItems[currentIndex].description,
+//   );
+// }
+
+// function onArrowLeft() {
+//   if (currentIndex - 1 < 0) {
+//     currentIndex = galleryItems.length - 1;
+//   } else {
+//     currentIndex -= 1;
+//   }
+//   lightBoxImgContent(
+//     galleryItems[currentIndex].original,
+//     galleryItems[currentIndex].description,
+//   );
+// }
