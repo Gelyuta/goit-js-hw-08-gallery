@@ -114,8 +114,6 @@ function createGalleryImagesMarkup(galleryItems) {
 }
 
 
-
-
 // Модалка 
 
 const refs = {
